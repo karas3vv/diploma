@@ -266,11 +266,13 @@ GATv2 + GRU, TGAT, MTAD-GAT, GDN, сглаживание графа, CUSUM и д
 Обучающую задачу и генератор предстоит выбрать в паспорте первого эксперимента;
 ранние планы в `THESIS_PLAN.md` и `TODO.md` ещё требуют согласования с этим README.
 
-- [course_work.tex](course_work.tex) — основной исходник диплома;
-  сохранено историческое имя файла.
-- [thesis.bib](thesis.bib) — библиография.
-- [SCWorks.cls](SCWorks.cls), [preamble.sty](preamble.sty)
-  и [ugost2003.bst](ugost2003.bst) — оформление документа и источников.
+Текст диплома и файлы для его сборки находятся в папке `text/`:
+
+- [diploma.tex](text/diploma.tex) — основной исходник диплома.
+- [thesis.bib](text/thesis.bib) — библиография.
+- [SCWorks.cls](text/SCWorks.cls), [preamble.sty](text/preamble.sty)
+  и [ugost2003.bst](text/ugost2003.bst) — оформление документа и источников.
+- [figures/](text/figures/) — рисунки для текста диплома.
 - [THESIS_PLAN.md](THESIS_PLAN.md) — ранний подробный план теоретической
   и практической частей; содержит предыдущую постановку и требует обновления.
 - [TODO.md](TODO.md) — первоначальный план изучения темы; требует актуализации.
@@ -281,13 +283,18 @@ GATv2 + GRU, TGAT, MTAD-GAT, GDN, сглаживание графа, CUSUM и д
 языка и пакетами, указанными в шаблоне. Выполнить из корня репозитория:
 
 ```bash
-pdflatex -no-shell-escape -interaction=nonstopmode -halt-on-error course_work.tex
-bibtex course_work
-pdflatex -no-shell-escape -interaction=nonstopmode -halt-on-error course_work.tex
-pdflatex -no-shell-escape -interaction=nonstopmode -halt-on-error course_work.tex
+cd text
+pdflatex -no-shell-escape -interaction=nonstopmode -halt-on-error diploma.tex
+bibtex diploma
+pdflatex -no-shell-escape -interaction=nonstopmode -halt-on-error diploma.tex
+pdflatex -no-shell-escape -interaction=nonstopmode -halt-on-error diploma.tex
 ```
 
-Результат — `course_work.pdf`. PDF и промежуточные файлы сборки исключены из Git.
+Результат — `text/diploma.pdf`. PDF и промежуточные файлы сборки исключены из Git.
+
+Для автоматической пересборки при изменении исходников выполнить
+`bash watch.sh` из корня репозитория. Скрипт использует `inotifywait` и собирает
+диплом в папке `text/`.
 
 В русском тексте LaTeX тире оформляется как `"---`, с пробелами по сторонам,
 как в исходнике диплома Ивана: `временной ряд "--- это последовательность наблюдений`.

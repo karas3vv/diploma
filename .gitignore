@@ -15,7 +15,7 @@
 *.xdv
 
 # Generated document output
-/course_work.pdf
+/text/diploma.pdf
 
 # minted / pygments cache
 _minted*/
